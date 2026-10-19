@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AerTech | Aire Acondicionado, Domótica & Ingeniería Eléctrica</title>
+    
+    <!-- Google Fonts: Plus Jakarta Sans (Títulos) & Inter (Cuerpo) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#0B0F19',
+                        cardBg: '#131C2E',
+                        borderDark: '#1E293B',
+                        accentYellow: '#F59E0B',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0B0F19;
+            color: #F8FAFC;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .glass-nav {
+            background: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at 50% 20%, rgba(30, 58, 138, 0.25) 0%, rgba(11, 15, 25, 0.95) 70%);
+        }
+        .card-glow:hover {
+            box-shadow: 0 0 25px rgba(245, 158, 11, 0.15);
+            border-color: rgba(245, 158, 11, 0.4);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0F19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1E293B;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #334155;
+        }
+    </style>
+</head>
+<body class="bg-darkBg text-slate-100 antialiased selection:bg-amber-500 selection:text-slate-950 transition-all duration-300">
+
+    <!-- Contenedor Principal Adaptable (Mobile-First Real Viewport) -->
+    <div id="main-viewport-wrapper" class="w-full transition-all duration-500">
+
+        <!-- Header / Navbar -->
+        <header class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-slate-800/80 transition-all duration-300">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-20">
+                    <!-- Logo -->
+                    <a href="#" class="flex items-center gap-3 group">
+                        <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-amber-500 to-amber-400 flex items-center justify-center text-slate-950 font-black text-xl shadow-lg shadow-amber-500/20 group-hover:scale-105 transition-transform duration-300">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="font-heading font-extrabold text-2xl tracking-tight text-white">Aer<span class="text-amber-400">Tech</span></span>
+                            <span class="text-[10px] tracking-widest text-slate-400 font-semibold uppercase">Aire Acondicionado & Domótica</span>
+                        </div>
+                    </a>
+
+                    <!-- Desktop Navigation -->
+                    <nav class="hidden md:flex items-center gap-8">
+                        <a href="#servicios" class="text-sm font-medium text-slate-300 hover:text-amber-400 transition-colors">Servicios</a>
+                        <a href="https://www.tiktok.com/@aertech.v?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-slate-300 hover:text-amber-400 transition-colors flex items-center gap-1.5">
+                            <i class="fa-brands fa-tiktok"></i> TikTok
+                        </a>
+                        <a href="#contacto" class="text-sm font-medium text-slate-300 hover:text-amber-400 transition-colors">Contacto</a>
+                    </nav>
+
+                    <!-- CTA Button Desktop (WhatsApp Green) -->
+                    <div class="hidden md:flex items-center gap-4">
+                        <a href="https://wa.me/51913515273?text=Hola%20AerTech,%20deseo%20más%20información%20sobre%20sus%20servicios" target="_blank" rel="noopener noreferrer" class="bg-emerald-600 hover:bg-emerald-500 text-white font-heading font-bold px-5 py-2.5 rounded-xl shadow-lg shadow-emerald-600/25 hover:shadow-emerald-600/40 transition-all duration-300 flex items-center gap-2 text-sm">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                            Cotizar Rápido
+                        </a>
+                    </div>
+
+                    <!-- Mobile Menu Button -->
+                    <button id="menu-btn" class="md:hidden text-slate-300 hover:text-white p-2 rounded-lg bg-slate-900 border border-slate-800 focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden glass-nav border-b border-slate-800 px-4 pt-2 pb-6 space-y-3">
+                <a href="#servicios" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-300 hover:bg-slate-800/60 hover:text-amber-400 transition-colors">Servicios</a>
+                <a href="https://www.tiktok.com/@aertech.v?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-300 hover:bg-slate-800/60 hover:text-amber-400 transition-colors">
+                    <i class="fa-brands fa-tiktok mr-2"></i> TikTok
+                </a>
+                <a href="#contacto" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-300 hover:bg-slate-800/60 hover:text-amber-400 transition-colors">Contacto</a>
+                <div class="pt-2">
+                    <a href="https://wa.me/51913515273?text=Hola%20AerTech,%20deseo%20más%20información%20sobre%20sus%20servicios" target="_blank" rel="noopener noreferrer" class="w-full text-center bg-emerald-600 hover:bg-emerald-500 text-white font-heading font-bold px-5 py-3 rounded-xl shadow-lg shadow-emerald-600/25 flex items-center justify-center gap-2 text-sm">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> Cotizar por WhatsApp
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="relative min-h-screen pt-32 pb-20 flex items-center justify-center hero-gradient overflow-hidden">
+            <!-- Background Grid Effect -->
+            <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b15_1px,transparent_1px),linear-gradient(to_bottom,#1e293b15_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full text-center">
+                
+                <!-- Badge Superior -->
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900/90 border border-amber-500/30 text-amber-400 text-xs sm:text-sm font-semibold mb-6 shadow-xl shadow-amber-500/10">
+                    <span class="flex h-2.5 w-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+                    <span>Ingeniería Avanzada & Automatización Residencial</span>
+                </div>
+
+                <!-- Título Carrusel Deslizable de 6 Segundos (Altura expandida y adaptable) -->
+                <div class="relative max-w-4xl mx-auto h-52 sm:h-56 md:h-64 flex items-center justify-center mb-6 overflow-hidden">
+                    <!-- Slide 1 -->
+                    <div class="hero-slide absolute inset-0 transition-all duration-700 ease-in-out opacity-100 transform translate-y-0 flex items-center justify-center px-2">
+                        <h1 class="text-2xl sm:text-4xl md:text-5xl font-extrabold font-heading tracking-tight leading-snug">
+                            El Clima Perfecto y el <span class="text-amber-400">control total</span> de tu hogar en un solo toque.
+                        </h1>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="hero-slide absolute inset-0 transition-all duration-700 ease-in-out opacity-0 transform translate-y-8 pointer-events-none flex items-center justify-center px-2">
+                        <h1 class="text-2xl sm:text-4xl md:text-5xl font-extrabold font-heading tracking-tight leading-snug">
+                            Reduce hasta un <span class="text-amber-400">42%</span> <span class="text-amber-400">en tu Recibo de Luz</span> con Aires Acondicionados y Domótica Eficiente.
+                        </h1>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="hero-slide absolute inset-0 transition-all duration-700 ease-in-out opacity-0 transform translate-y-8 pointer-events-none flex items-center justify-center px-2">
+                        <h1 class="text-2xl sm:text-4xl md:text-5xl font-extrabold font-heading tracking-tight leading-snug">
+                            Prepárate para el <span class="text-amber-400">Fenómeno El Niño</span>: Protege a tu familia del calor extremo hoy mismo.
+                        </h1>
+                    </div>
+                </div>
+
+                <!-- Subtítulo -->
+                <p class="max-w-2xl mx-auto text-base sm:text-lg text-slate-400 mb-10 font-normal leading-relaxed">
+                    Técnicos expertos en instalación y mantenimiento de aires acondicionados y automatización de hogares inteligentes.
+                </p>
+
+                <!-- Botones CTA Hero -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+                    <a href="https://wa.me/51913515273?text=Hola%20AerTech,%20deseo%20agendar%20una%20visita%20técnica%20o%20cotización" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-500 text-white font-heading font-bold px-8 py-4 rounded-xl shadow-xl shadow-emerald-600/25 hover:shadow-emerald-600/40 transition-all duration-300 flex items-center justify-center gap-3 text-base">
+                        <i class="fa-brands fa-whatsapp text-2xl"></i> Solicitar Asesoría Inmediata
+                    </a>
+                    <a href="#servicios" class="w-full sm:w-auto bg-slate-900/80 hover:bg-slate-800 text-slate-200 font-heading font-semibold px-8 py-4 rounded-xl border border-slate-700/80 hover:border-slate-600 transition-all duration-300 flex items-center justify-center gap-2 text-base">
+                        <span>Ver Servicios</span>
+                        <i class="fa-solid fa-arrow-down text-amber-400"></i>
+                    </a>
+                </div>
+
+                <!-- Stats Bar -->
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto pt-8 border-t border-slate-800/80">
+                    <div class="text-center">
+                        <div class="font-heading font-extrabold text-3xl sm:text-4xl text-amber-400 mb-1">+500</div>
+                        <div class="text-xs sm:text-sm text-slate-400 font-medium">Proyectos Entregados</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="font-heading font-extrabold text-3xl sm:text-4xl text-amber-400 mb-1">100%</div>
+                        <div class="text-xs sm:text-sm text-slate-400 font-medium">Garantía Certificada</div>
+                    </div>
+                    <div class="text-center col-span-2 md:col-span-1">
+                        <div class="font-heading font-extrabold text-3xl sm:text-4xl text-amber-400 mb-1">24/7</div>
+                        <div class="text-xs sm:text-sm text-slate-400 font-medium">Soporte Técnico Especializado</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Sección de Servicios -->
+        <section id="servicios" class="py-24 bg-slate-950/60 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-amber-400 font-heading font-bold text-sm tracking-wider uppercase mb-3 block">Nuestras Soluciones</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold font-heading tracking-tight mb-4">Confort y Control para tu Hogar</h2>
+                    <p class="text-slate-400 text-base sm:text-lg">Diseñamos espacios ideales con climatización perfecta y tecnología inteligente que simplifica tu día a día.</p>
+                </div>
+
+                <!-- Grid de Servicios -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- Card 1 -->
+                    <div class="bg-cardBg border border-borderDark rounded-2xl p-8 card-glow transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="w-14 h-14 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                                <i class="fa-solid fa-snowflake"></i>
+                            </div>
+                            <h3 class="font-heading font-bold text-xl text-white mb-3">Aire Acondicionado Residencial & Comercial</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                                Disfruta de ambientes frescos y puros todo el año. Instalación y mantenimiento especializado de equipos modernos con ahorro de energía.
+                            </p>
+                        </div>
+                        <ul class="space-y-2.5 pt-4 border-t border-slate-800 text-xs sm:text-sm text-slate-300">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400"></i> Aires Split & Inverter de Alta Gama</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400"></i> Mantenimiento Preventivo y Limpieza</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400"></i> Óptimo Rendimiento Garantizado</li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="bg-cardBg border border-borderDark rounded-2xl p-8 card-glow transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="w-14 h-14 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                                <i class="fa-solid fa-house-laptop"></i>
+                            </div>
+                            <h3 class="font-heading font-bold text-xl text-white mb-3">Domótica y Hogar Inteligente</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                                Controla la temperatura, iluminación y seguridad de tu casa desde tu celular o con tu voz, estés donde estés con total comodidad.
+                            </p>
+                        </div>
+                        <ul class="space-y-2.5 pt-4 border-t border-slate-800 text-xs sm:text-sm text-slate-300">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400"></i> Encendido Automático de Aires</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400"></i> Iluminación y Escenas Inteligentes</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400"></i> Comodidad y Seguridad Total</li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="bg-cardBg border border-borderDark rounded-2xl p-8 card-glow transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="w-14 h-14 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                                <i class="fa-solid fa-bolt-lightning"></i>
+                            </div>
+                            <h3 class="font-heading font-bold text-xl text-white mb-3">Instalaciones Eléctricas Seguras</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                                Sistemas eléctricos seguros y bien diseñados para proteger tus equipos de valor y brindar tranquilidad absoluta a tu familia.
+                            </p>
+                        </div>
+                        <ul class="space-y-2.5 pt-4 border-t border-slate-800 text-xs sm:text-sm text-slate-300">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400"></i> Tableros y Protecciones Modernas</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400"></i> Puesta a Tierra Certificada</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400"></i> Eficiencia y Seguridad Residencial</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Contacto Directo -->
+        <section id="contacto" class="py-24 bg-slate-950/80 border-t border-slate-800/80 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-amber-400 font-heading font-bold text-sm tracking-wider uppercase mb-3 block">Hablemos Hoy</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold font-heading tracking-tight mb-4">Canales de Atención Directa</h2>
+                    <p class="text-slate-400 text-base sm:text-lg">Comunícate de inmediato con nuestros especialistas para resolver cualquier duda o agendar un servicio técnico.</p>
+                </div>
+
+                <!-- Grid de Contacto -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                    
+                    <!-- Card WhatsApp -->
+                    <a href="https://wa.me/51913515273?text=Hola%20AerTech,%20deseo%20cotizar%20sus%20servicios" target="_blank" rel="noopener noreferrer" class="bg-cardBg border border-borderDark rounded-2xl p-8 text-center card-glow transition-all duration-300 group flex flex-col items-center">
+                        <div class="w-16 h-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </div>
+                        <h3 class="font-heading font-bold text-xl text-white mb-2">WhatsApp Directo</h3>
+                        <p class="text-slate-400 text-sm mb-4">Respuesta rápida y asesoría personalizada al instante.</p>
+                        <span class="text-amber-400 font-bold text-sm flex items-center gap-1 mt-auto">
+                            +51 913 515 273 <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </span>
+                    </a>
+
+                    <!-- Card Teléfono -->
+                    <a href="tel:913515273" class="bg-cardBg border border-borderDark rounded-2xl p-8 text-center card-glow transition-all duration-300 group flex flex-col items-center">
+                        <div class="w-16 h-16 rounded-2xl bg-amber-500/10 border border-amber-500/25 text-amber-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fa-solid fa-phone-volume"></i>
+                        </div>
+                        <h3 class="font-heading font-bold text-xl text-white mb-2">Llamada Telefónica</h3>
+                        <p class="text-slate-400 text-sm mb-4">Atención directa para emergencias y coordinación de obras.</p>
+                        <span class="text-amber-400 font-bold text-sm flex items-center gap-1 mt-auto">
+                            913 515 273 <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </span>
+                    </a>
+
+                    <!-- Card TikTok -->
+                    <a href="https://www.tiktok.com/@aertech.v?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" class="bg-cardBg border border-borderDark rounded-2xl p-8 text-center card-glow transition-all duration-300 group flex flex-col items-center">
+                        <div class="w-16 h-16 rounded-2xl bg-slate-900 border border-slate-700 text-white flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fa-brands fa-tiktok"></i>
+                        </div>
+                        <h3 class="font-heading font-bold text-xl text-white mb-2">Síguenos en TikTok</h3>
+                        <p class="text-slate-400 text-sm mb-4">Mira nuestros trabajos en video, tips y proyectos reales.</p>
+                        <span class="text-amber-400 font-bold text-sm flex items-center gap-1 mt-auto">
+                            @aertech.v <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </span>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-darkBg border-t border-slate-800/80 pt-16 pb-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+                    <!-- Col 1 -->
+                    <div class="md:col-span-2">
+                        <a href="#" class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-amber-400 flex items-center justify-center text-slate-950 font-black text-lg shadow-lg shadow-amber-500/20">
+                                <i class="fa-solid fa-bolt"></i>
+                            </div>
+                            <span class="font-heading font-extrabold text-2xl tracking-tight text-white">Aer<span class="text-amber-400">Tech</span></span>
+                        </a>
+                        <p class="text-slate-400 text-sm max-w-sm mb-6 leading-relaxed">
+                            Empresa especializada en aire acondicionado, domótica avanzada e instalaciones eléctricas. Confort, eficiencia y seguridad para tu hogar.
+                        </p>
+                        <div class="flex items-center gap-3">
+                            <a href="https://wa.me/51913515273" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-amber-400 hover:border-amber-500/40 flex items-center justify-center transition-all duration-300">
+                                <i class="fa-brands fa-whatsapp text-lg"></i>
+                            </a>
+                            <a href="https://www.tiktok.com/@aertech.v?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-amber-400 hover:border-amber-500/40 flex items-center justify-center transition-all duration-300">
+                                <i class="fa-brands fa-tiktok"></i>
+                            </a>
+                            <a href="tel:913515273" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-amber-400 hover:border-amber-500/40 flex items-center justify-center transition-all duration-300">
+                                <i class="fa-solid fa-phone"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Col 2 -->
+                    <div>
+                        <h4 class="font-heading font-bold text-white text-base mb-4">Enlaces Rápidos</h4>
+                        <ul class="space-y-2.5 text-sm text-slate-400">
+                            <li><a href="#servicios" class="hover:text-amber-400 transition-colors">Aire Acondicionado</a></li>
+                            <li><a href="#servicios" class="hover:text-amber-400 transition-colors">Domótica Residencial</a></li>
+                            <li><a href="https://www.tiktok.com/@aertech.v?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" class="hover:text-amber-400 transition-colors">TikTok de AerTech</a></li>
+                            <li><a href="#contacto" class="hover:text-amber-400 transition-colors">Contacto Directo</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Col 3 -->
+                    <div>
+                        <h4 class="font-heading font-bold text-white text-base mb-4">Contacto</h4>
+                        <ul class="space-y-3 text-sm text-slate-400">
+                            <li class="flex items-center gap-2.5">
+                                <i class="fa-solid fa-phone text-amber-400"></i>
+                                <span>+51 913 515 273</span>
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i class="fa-brands fa-whatsapp text-emerald-400"></i>
+                                <span>WhatsApp 24/7</span>
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i class="fa-brands fa-tiktok text-amber-400"></i>
+                                <span>@aertech.v</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500">
+                    <p>&copy; 2026 AerTech. Todos los derechos reservados.</p>
+                    <p class="mt-2 sm:mt-0">Aire Acondicionado, Domótica & Confort de Vanguardia.</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Botones Flotantes Fijos (TikTok arriba, WhatsApp abajo) en la esquina inferior izquierda -->
+    <div class="fixed bottom-6 left-6 z-[9999] flex flex-col gap-3 items-start pointer-events-auto">
+        
+        <!-- Botón TikTok Flotante -->
+        <div class="relative group">
+            <!-- Tooltip -->
+            <div class="absolute left-16 bottom-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none bg-slate-900 border border-slate-700 text-white text-xs px-3 py-2 rounded-xl shadow-xl whitespace-nowrap z-50 flex items-center gap-2">
+                <span>Síguenos en TikTok</span>
+            </div>
+            <!-- Botón Circular -->
+            <a href="https://www.tiktok.com/@aertech.v?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" class="w-14 h-14 bg-slate-900 hover:bg-slate-800 border border-slate-700 text-white rounded-full flex items-center justify-center text-2xl shadow-2xl transition-all duration-300 hover:scale-110 relative">
+                <i class="fa-brands fa-tiktok"></i>
+            </a>
+        </div>
+
+        <!-- Botón WhatsApp Flotante -->
+        <div class="relative group">
+            <!-- Tooltip -->
+            <div class="absolute left-16 bottom-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none bg-slate-900 border border-slate-700 text-white text-xs px-3 py-2 rounded-xl shadow-xl whitespace-nowrap z-50 flex items-center gap-2">
+                <span>Hola, escríbenos para ayudarte</span>
+            </div>
+            
+            <!-- Botón Circular -->
+            <a href="https://wa.me/51913515273?text=Hola%20AerTech,%20deseo%20más%20información%20sobre%20sus%20servicios" target="_blank" rel="noopener noreferrer" class="w-14 h-14 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-full flex items-center justify-center text-3xl shadow-2xl transition-all duration-300 hover:scale-110 relative">
+                <i class="fa-brands fa-whatsapp"></i>
+                <!-- Badge Rojo con número 1 -->
+                <span class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-[11px] font-bold rounded-full flex items-center justify-center shadow-md animate-bounce">1</span>
+            </a>
+        </div>
+
+    </div>
+
+    <!-- Script de Interactividad (Mobile menu y carrusel de 6 segundos) -->
+    <script>
+        // Toggle mobile menu
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Carrusel de Títulos Hero (6 segundos exactos por título)
+        const slides = document.querySelectorAll('.hero-slide');
+        let currentSlide = 0;
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            slides.forEach((slide, idx) => {
+                if (idx === index) {
+                    slide.classList.remove('opacity-0', 'translate-y-8', 'pointer-events-none');
+                    slide.classList.add('opacity-100', 'translate-y-0');
+                } else {
+                    slide.classList.remove('opacity-100', 'translate-y-0');
+                    slide.classList.add('opacity-0', 'translate-y-8', 'pointer-events-none');
+                }
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        // Intervalo de 6 segundos
+        setInterval(nextSlide, 6000);
+    </script>
+</body>
